@@ -1,0 +1,21 @@
+<li class="has-dropdown"><%= link_to 'Beverages', beverages_path %>
+  <ul class="dropdown">
+    <li><%= link_to 'List Categories', beverage_categories_path %></li>
+    <li><%= link_to 'New Category', new_beverage_category_path %></li>
+    <li class="divider"></li>
+    <li><%= link_to 'List Beverages', beverages_path %></li>
+    <li><%= link_to 'New Beverage', new_beverage_path %></li>
+  </ul>
+</li>
+<li class="has-dropdown"><%= link_to 'Purchases', purchases_path %>
+  <ul class="dropdown">
+    <li><%= link_to 'List Purchases', purchases_path %></li>
+    <li><%= link_to 'New Purchase', new_purchase_path %></li>
+  </ul>
+</li>
+<li class="has-dropdown"><%= link_to 'Sales', sales_path %>
+  <ul class="dropdown">
+    <li><%= link_to 'List Sales', sales_path %></li>
+    <li><%= link_to 'New Sale', new_sale_path %></li>
+  </ul>
+</li>

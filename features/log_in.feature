@@ -2,23 +2,22 @@ Feature: Log in
 
   In order to get access to the application
   As a user
-  I want to log in
+  I want to log in into the system
+
+  Background:
+    Given I exist as a "user"
+    And I'm in the "login" page
 
   Scenario: User logs in successfully
-    Given I exist as a user
-    When I go to the login page
-    And I fill in "username" with "gabrielhilal"
+    When I fill in "username" with "user"
     And I fill in "password" with "secret"
     And I press "Login"
-    And I should see "Welcome gabrielhilal"
-    And I should be redirected to the home page
-
+    Then I should see "Welcome user"
+    And I should be redirected to the "home" page
 
   Scenario: User enters wrong email/password combination
-    Given I exist as a user
-    When I go to the login page
-    And I fill in "username" with "gabrielhilal"
+    When I fill in "username" with "user"
     And I fill in "password" with "wrongpassword"
     And I press "Login"
-    And I should see "Invalid username/password combination."
-    And I should see the login page again
+    Then I should see "Invalid username/password combination."
+    And I should be redirected to the "login" page

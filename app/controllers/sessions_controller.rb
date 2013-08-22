@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  skip_before_action :authorize
 
   def new
     unless current_user.nil?
@@ -10,7 +11,7 @@ class SessionsController < ApplicationController
     user = User.find_by_username(params[:username])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      flash[:success] = 'Welcome ' + current_user.username
+      flash[:notice] = 'Welcome ' + current_user.username
       redirect_to home_path
     else
       flash.now[:error] = 'Invalid username/password combination.'
@@ -18,4 +19,9 @@ class SessionsController < ApplicationController
     end
   end
 
+  def destroy
+    session[:user_id] = nil
+    flash[:notice] = 'Logged out'
+    redirect_to login_path
+  end
 end

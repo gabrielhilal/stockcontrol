@@ -1,0 +1,36 @@
+<%= form_for @supplier do |f| %>
+
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <fieldset>
+
+    <div class="row">
+      <div class="large-4 columns">
+        <%= f.label :name %>
+        <%= f.text_field :name, placeholder: 'Type the name...' %>
+      </div>
+      <div class="large-4 columns">
+        <%= f.label :telephone %>
+        <%= f.text_field :telephone, placeholder: 'Type the telephone...' %>
+      </div>
+      <div class="large-4 columns">
+        <%= f.label :email %>
+        <%= f.text_field :email, placeholder: 'Type the email...' %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="large-12 columns">
+        <%= f.submit class: 'small button right round' %>
+      </div>
+    </div>
+
+  </fieldset>
+
+<% end %>
+
+<div class="row">
+  <div class="large-12 columns">
+    <%= link_to 'Back to Suppliers', suppliers_path, class: 'small button secondary' %>
+  </div>
+</div>

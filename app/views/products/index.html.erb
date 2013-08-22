@@ -1,0 +1,35 @@
+<h1>Listing Products</h1>
+<div class="row">
+  <div class="large-12 columns">
+    <table>
+      <thead>
+        <tr>
+          <th><%= link_to "Name", sort: 'name' %></th>
+          <th>Description</th>
+          <th>Quantity/Measure</th>
+          <th><%= link_to "Category", sort: 'product_category_id' %></th>
+          <th colspan="2"></th>
+         </tr>
+      </thead>
+
+      <tbody>
+        <% @products.each do |product| %>
+        <tr>
+          <td><%= product.name %></td>
+          <td><%= simple_format(product.description) %></td>
+          <td><%= "#{product.quantity} #{product.measure}" %></td>
+          <td><%= product.product_category.name %></td>
+          <td class="text-right"><%= link_to 'Edit', edit_product_path(product), class: 'tiny button secondary round' %></td>
+          <td class="text-right"><%= link_to 'Delete', product, method: :delete, data: { confirm: "Product #{product.name} will be deleted. Are you sure?" }, class: 'tiny button alert round' %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="row">
+  <div class="large-12 columns text-right">
+    <%= link_to 'New Product', new_product_path, class: 'small button round' %>
+  </div>
+</div>

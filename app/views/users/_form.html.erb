@@ -1,0 +1,46 @@
+<%= form_for @user do |f| %>
+
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <fieldset>
+
+    <div class="row">
+      <div class="large-4 columns">
+        <%= f.label :username %>
+        <%= f.text_field :username, placeholder: 'Type the username...' %>
+      </div>
+      <div class="large-4 columns">
+        <%= f.label :role %>
+        <%= f.select :role,[:director, :manager, :supervisor, :bartender], {include_blank: 'Select Role'} %>
+      </div>
+      <div class="large-4 columns">
+        <%= f.label :venue %>
+        <%= f.collection_select(:venue_id, Venue.all, :id, :name , {include_blank: 'Select Venue'} ) %>
+      </div>
+    </div>
+  <div class="row">
+    <div class="large-6 columns">
+      <%= f.label :password %>
+      <%= f.password_field :password, placeholder: 'Type a password...' %>
+    </div>
+    <div class="large-6 columns">
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation, placeholder: 'Confirm the password...' %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="large-12 columns">
+      <%= f.submit class: 'small button right round' %>
+    </div>
+  </div>
+
+  </fieldset>
+
+<% end %>
+
+<div class="row">
+  <div class="large-12 columns">
+    <%= link_to 'Back to Users', users_path, class: 'small button secondary' %>
+  </div>
+</div>

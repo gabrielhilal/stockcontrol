@@ -1,0 +1,50 @@
+<h1>Sale Details</h1>
+
+<div class="row">
+  <div class="large-6 columns">
+    <h5>Sales on <%= @sale.date %></h5>
+  </div>
+  <div class="large-6 columns">
+    <%= simple_format(@sale.summary) %>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="large-12 columns">
+    <table>
+      <thead>
+        <tr>
+          <th>Beverage</th>
+          <th class="text-right">Quantity</th>
+          <th class="text-right">Price (£)</th>
+          <th class="text-right">Subtotal (£)</th>
+         </tr>
+      </thead>
+
+      <tbody>
+        <% @sale.sale_lines.each do |line| %>
+        <tr>
+          <td><%= line.beverage.name %></td>
+          <td class="text-right"><%= line.quantity %></td>
+          <td class="text-right"><%= number_with_precision(line.price, precision: 2) %></td>
+          <td class="text-right"><%= number_with_precision(line.subtotal, precision: 2) %></td>
+        </tr>
+        <% end %>
+      </tbody>
+        <tr>
+          <td colspan="3"><b>Total</b></td>
+          <td class="text-right"><b><%= number_with_precision(@sale.total, precision: 2) %></b></td>
+        </tr>
+    </table>
+  </div>
+</div>
+
+<div class="row">
+  <div class="large-6 columns">
+    <%= link_to 'Back to Sales', sales_path, class: 'small button secondary' %>
+  </div>
+  <div class="large-6 text-right columns">
+    <%= link_to 'Edit', edit_sale_path, class: 'small button secondary round' %>
+    <%= link_to 'Delete', @sale, method: :delete, data: { confirm: "Sales on #{@sale.date} will be deleted. Are you sure?" }, class: 'small button alert round' %>
+  </div>
+</div>

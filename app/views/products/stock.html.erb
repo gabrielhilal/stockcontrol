@@ -1,0 +1,33 @@
+<h1>Products In Stock</h1>
+<div class="row">
+  <div class="large-12 columns">
+    <table>
+      <thead>
+        <tr>
+          <th rowspan="2"><%= link_to "Name", sort: 'name' %></th>
+          <th rowspan="2">Quantity/Measure</th>
+          <th rowspan="2"><%= link_to "Category", sort: 'product_category_id' %></th>
+          <th class="text-center" colspan="<%= @venues.count %>">Venues</th>
+        </tr>
+        <tr>
+          <% @venues.all.each do |venue| %>
+          <th><%= venue.name %></th>
+          <% end %>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @products.each do |product| %>
+        <tr>
+          <td><%= product.name %></td>
+          <td><%= "#{product.quantity} #{product.measure}" %></td>
+          <td><%= product.product_category.name %></td>
+          <% @venues.each do |venue| %>
+          <td><%= number_with_precision(venue.calc_stock(product), precision: 1) %> </td>
+          <% end %>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

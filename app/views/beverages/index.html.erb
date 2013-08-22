@@ -1,0 +1,39 @@
+<h1>Listing Beverages</h1>
+<div class="row">
+  <div class="large-12 columns">
+    <table>
+      <thead>
+        <tr>
+          <th><%= link_to 'Name', sort: 'name' %></th>
+          <th>Description</th>
+          <th>Method</th>
+          <th>Glass</th>
+          <th>Garnish</th>
+          <th><%= link_to 'Category', sort: 'beverage_category_id' %></th>
+          <th colspan="2"></th>
+         </tr>
+      </thead>
+
+      <tbody>
+        <% @beverages.each do |beverage| %>
+        <tr>
+          <td><%= link_to beverage.name, beverage_path(beverage) %></td>
+          <td><%= simple_format(beverage.description) %></td>
+          <td><%= simple_format(beverage.method) %></td>
+          <td><%= beverage.glass %></td>
+          <td><%= beverage.garnish %></td>
+          <td><%= beverage.beverage_category.name %></td>
+          <td class="text-right"><%= link_to 'Edit', edit_beverage_path(beverage), class: 'tiny button secondary round' %></td>
+          <td class="text-right"><%= link_to 'Delete', beverage, method: :delete, data: { confirm: "Beverage #{beverage.name} will be deleted. Are you sure?" }, class: 'tiny button alert round' %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="row">
+  <div class="large-12 columns text-right">
+    <%= link_to 'New Beverage', new_beverage_path, class: 'small button round' %>
+  </div>
+</div>

@@ -1,15 +1,36 @@
 Lostgroup::Application.routes.draw do
 
-  resources :sessions
+  resources :sessions, only: [:new, :create, :destroy]
   get '/login', to: 'sessions#new'
+  get '/logout', to: 'sessions#destroy'
 
   get '/home', to: 'static_pages#home'
+
+  resources :users
+  resources :venues
+  resources :suppliers
+  resources :purchases
+  resources :product_categories
+  resources :products do
+    collection do
+      get 'stock'
+    end
+  end
+  resources :beverage_categories
+  resources :beverages
+  resources :menus do
+    member do
+      get 'set_default'
+    end
+  end
+  resources :sales
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  root 'static_pages#home'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

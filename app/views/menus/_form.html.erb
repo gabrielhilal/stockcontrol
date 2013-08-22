@@ -1,0 +1,66 @@
+<%= nested_form_for @menu do |f| %>
+
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <fieldset>
+
+    <div class="row">
+      <div class="large-6 columns">
+        <%= f.label :name %>
+        <%= f.text_field :name, placeholder: 'Type the name...' %>
+      </div>
+      <div class="large-6 columns">
+        <%= f.label :description %>
+        <%= f.text_area :description, class: 'fix_row', rows: 5,  placeholder: 'Type the description...'  %>
+      </div>
+    </div>
+
+  </fieldset>
+  <fieldset>
+
+    <legend>Menu Items</legend>
+
+      <%= f.fields_for :menu_lines do |menu| %>
+      <div class="row">
+        <div class="large-6 columns">
+          <%= menu.label :beverage %>
+          <%= menu.grouped_collection_select(:beverage_id, BeverageCategory.all, :beverages, :name, :id, :name,  {include_blank: 'Select Beverage'}) %>
+        </div>
+        <div class="large-6 columns">
+          <%= menu.label :price %>
+          <div class="row collapse">
+            <div class="large-2 columns">
+              <span class="prefix">£</span>
+            </div>
+            <div class="large-6 columns">
+              <%= menu.text_field :price %>
+            </div>
+            <div class="large-4 columns">
+              <%= menu.link_to_remove 'Remove', class: 'tiny alert button right round' %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% end %>
+      <div class="row">
+        <div class="large-12 columns">
+          <%= f.link_to_add 'Add a beverage', :menu_lines, class: 'tiny secondary button round' %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="large-12 columns">
+          <%= f.submit class: 'small button right round' %>
+        </div>
+      </div>
+
+    </fieldset>
+
+
+<% end %>
+
+<div class="row">
+  <div class="large-12 columns">
+    <%= link_to 'Back to Menus', menus_path, class: 'small button secondary' %>
+  </div>
+</div>

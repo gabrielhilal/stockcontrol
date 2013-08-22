@@ -12,3 +12,11 @@
  *= require_tree .
  *= require foundation_and_overrides
  */
+
+.fix_row {
+  height: auto;
+}
+table {
+  width: 100%;
+}
+

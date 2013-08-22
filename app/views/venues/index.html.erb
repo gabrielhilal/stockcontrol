@@ -1,0 +1,33 @@
+<h1>Listing Venues</h1>
+<div class="row">
+  <div class="large-12 columns">
+    <table>
+      <thead>
+        <tr>
+          <th><%= link_to 'Name', sort: 'name' %></th>
+          <th><%= link_to 'Telephone', sort: 'telephone' %></th>
+          <th><%= link_to 'Email', sort: 'email' %></th>
+          <th colspan="2"></th>
+         </tr>
+      </thead>
+
+      <tbody>
+        <% @venues.each do |venue| %>
+        <tr>
+          <td><%= venue.name %></td>
+          <td><%= venue.telephone %></td>
+          <td><%= mail_to venue.email %></td>
+          <td class="text-right"><%= link_to 'Edit', edit_venue_path(venue), class: 'tiny button secondary round' %></td>
+          <td class="text-right"><%= link_to 'Delete', venue, method: :delete, data: { confirm: "Venue #{venue.name} will be deleted. Are you sure?" }, class: 'tiny button alert round' %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="row">
+  <div class="large-12 columns text-right">
+    <%= link_to 'New Venue', new_venue_path, class: 'small button round' %>
+  </div>
+</div>

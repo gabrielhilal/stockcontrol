@@ -16,7 +16,8 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 
 gem 'compass-rails', github: 'milgner/compass-rails', branch: 'rails4'
-gem 'zurb-foundation', '~> 4.0.0'
+gem 'zurb-foundation'
+gem 'launchy'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
@@ -57,4 +58,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 2.0'
   gem 'factory_girl_rails'
   gem 'capybara'
+  gem 'faker'
 end
+
+gem 'nested_form'

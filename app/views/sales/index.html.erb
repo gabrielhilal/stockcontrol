@@ -1,0 +1,50 @@
+<h1>Listing Sales</h1>
+<div class="row collapse">
+  <%= form_tag sales_path, method: :get do %>
+  <div class="large-offset-8 large-3 columns small-8">
+    <%= text_field_tag :search, params[:search] %>
+  </div>
+  <div class="large-1 columns small-4">
+    <%= submit_tag "Search", name: nil, class: 'button postfix' %>
+  </div>
+</div>
+<% end %>
+
+<div class="row">
+  <div class="large-12 columns">
+    <table>
+      <thead>
+        <tr>
+          <th><%= link_to 'Date', sort: 'date' %></th>
+          <th>Summary</th>
+          <th><%= link_to "Venue", sort: 'venue_id' %></th>
+          <th class="text-right">Products</th>
+          <th class="text-right">Total Items</th>
+          <th class="text-right">Amount (£)</th>
+          <th colspan="2"></th>
+         </tr>
+      </thead>
+
+      <tbody>
+        <% @sales.each do |sale| %>
+        <tr>
+          <td><%= link_to sale.date.strftime('%d/%m/%Y'), sale_path(sale) %></td>
+          <td><%= sale.summary %></td>
+          <td><%= sale.venue.name %></td>
+          <td class="text-right"><%= sale.sale_lines.count %></td>
+          <td class="text-right"><%= number_with_precision(sale.items, precision: 0) %></td>
+          <td class="text-right"><%= number_with_precision(sale.total, precision: 2, delimiter: ',') %></td>
+          <td class="text-right"><%= link_to 'Edit', edit_sale_path(sale), class: 'tiny button secondary round' %></td>
+          <td class="text-right"><%= link_to 'Delete', sale, method: :delete, data: { confirm: "Sales on #{sale.date} will be deleted. Are you sure?" }, class: 'tiny button alert round' %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="row">
+  <div class="large-12 columns text-right">
+    <%= link_to 'New Sale', new_sale_path, class: 'small button round' %>
+  </div>
+</div>

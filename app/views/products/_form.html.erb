@@ -1,0 +1,46 @@
+<%= form_for @product do |f| %>
+
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <fieldset>
+
+    <div class="row">
+      <div class="large-6 columns">
+        <%= f.label :category %>
+        <%= f.collection_select(:product_category_id, ProductCategory.all, :id, :name , {include_blank: 'Select Category'} ) %>
+      </div>
+      <div class="large-6 columns">
+        <%= f.label :name %>
+        <%= f.text_field :name, placeholder: 'Type the name...' %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-6 columns">
+        <%= f.label :description %>
+        <%= f.text_area :description, class: 'fix_row', rows: 5,  placeholder: 'Type the description...'  %>
+      </div>
+      <div class="large-3 columns">
+        <%= f.label :quantity %>
+        <%= f.text_field :quantity, placeholder: 'Type the quantity...' %>
+      </div>
+      <div class="large-3 columns">
+        <%= f.label :measure %>
+        <%= f.select :measure, [:units, :ML], {include_blank: 'Select Role'} %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="large-12 columns">
+        <%= f.submit class: 'small button right round' %>
+      </div>
+    </div>
+
+  </fieldset>
+
+<% end %>
+
+<div class="row">
+  <div class="large-12 columns">
+    <%= link_to 'Back to Products', products_path, class: 'small button secondary' %>
+  </div>
+</div>

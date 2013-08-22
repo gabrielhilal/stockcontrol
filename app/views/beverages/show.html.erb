@@ -1,0 +1,70 @@
+<h1>Beverage Details</h1>
+
+<div class="row">
+  <div class="large-4 columns">
+    <h4><%= @beverage.name %></h4>
+    <%= @beverage.beverage_category.name %>
+  </div>
+  <div class="large-8 columns">
+    <%= simple_format(@beverage.description) %>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="large-4 columns">
+    <b>Glass:</b>
+  </div>
+  <div class="large-8 columns">
+    <%= @beverage.glass %>
+  </div>
+</div>
+<br />
+<div class="row">
+  <div class="large-4 columns">
+    <b>Garnish:</b>
+  </div>
+  <div class="large-8 columns">
+    <%= @beverage.garnish %>
+  </div>
+</div>
+<br />
+<div class="row">
+  <div class="large-4 columns">
+    <b>Method:</b>
+  </div>
+  <div class="large-8 columns">
+    <%= simple_format(@beverage.method) %>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="large-12 columns">
+    <b>Recipe:</b><br /><br />
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Quantity</th>
+         </tr>
+      </thead>
+
+      <tbody>
+        <% @beverage.recipes.each do |recipe| %>
+        <tr>
+          <td><%= recipe.product.name %></td>
+          <td><%= number_with_precision(recipe.quantity, precision: 2) %> <%= recipe.product.measure %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="row">
+  <div class="large-6 columns">
+    <%= link_to 'Back to Beverages', beverages_path, class: 'small button secondary' %>
+  </div>
+  <div class="large-6 text-right columns">
+    <%= link_to 'Edit', edit_beverage_path, class: 'small button secondary round' %>
+    <%= link_to 'Delete', @beverage, method: :delete, data: { confirm: "Beverage #{@beverage.name} will be deleted. Are you sure?" }, class: 'small button alert round' %>
+  </div>
+</div>

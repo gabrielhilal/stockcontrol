@@ -1,0 +1,62 @@
+<h1>Purchase Details</h1>
+
+<div class="row">
+  <div class="large-4 columns">
+    <h5>Purchase Order <%= @purchase.no %></h5>
+    Received on <%= @purchase.date.strftime('%b %d, %Y') %><br />
+    <%= @purchase.products.count %> products<br />
+    <%= number_with_precision(@purchase.items, precision: 0) %> items<br />
+    £ <%= number_with_precision(@purchase.total, precision: 2, delimiter: ',') %>
+  </div>
+  <div class="large-4 columns">
+    <h5><b>From:</b></h5>
+    <b>Supplier:</b> <%= @purchase.supplier.name %><br />
+    <b>Telephone:</b> <%= @purchase.supplier.telephone %><br />
+    <b>Email:</b> <%= mail_to @purchase.supplier.email %>
+  </div>
+  <div class="large-4 columns">
+    <h5><b>To:</b></h5>
+    <b>Venue:</b> <%= @purchase.venue.name %><br />
+    <b>Telephone:</b> <%= @purchase.venue.telephone %><br />
+    <b>Email:</b> <%= mail_to @purchase.venue.email %>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="large-12 columns">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th class="text-right">Quantity</th>
+          <th class="text-right">Price (£)</th>
+          <th class="text-right">Subtotal (£)</th>
+         </tr>
+      </thead>
+
+      <tbody>
+        <% @purchase.purchase_lines.each do |line| %>
+        <tr>
+          <td><%= line.product.display_details %></td>
+          <td class="text-right"><%= line.quantity %></td>
+          <td class="text-right"><%= number_with_precision(line.price, precision: 2) %></td>
+          <td class="text-right"><%= number_with_precision(line.subtotal, precision: 2) %></td>
+        </tr>
+        <% end %>
+      </tbody>
+        <tr>
+          <td colspan="3"><b>Total</b></td>
+          <td class="text-right"><b><%= number_with_precision(@purchase.total, precision: 2) %></b></td>
+        </tr>
+    </table>
+  </div>
+</div>
+<div class="row">
+  <div class="large-6 columns">
+    <%= link_to 'Back to Purchases', purchases_path, class: 'small button secondary' %>
+  </div>
+  <div class="large-6 text-right columns">
+    <%= link_to 'Edit', edit_purchase_path, class: 'small button secondary round' %>
+    <%= link_to 'Delete', @purchase, method: :delete, data: { confirm: "Purchase #{@purchase.no} will be deleted. Are you sure?" }, class: 'small button alert round' %>
+  </div>
+</div>

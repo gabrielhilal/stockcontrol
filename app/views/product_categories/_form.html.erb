@@ -1,0 +1,32 @@
+<%= form_for @category do |f| %>
+
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <fieldset>
+
+    <div class="row">
+      <div class="large-6 columns">
+        <%= f.label :name %>
+        <%= f.text_field :name, placeholder: 'Type the name...' %>
+      </div>
+      <div class="large-6 columns">
+        <%= f.label :description %>
+        <%= f.text_area :description, class: 'fix_row', rows: 10,  placeholder: 'Type the description...' %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="large-12 columns">
+        <%= f.submit class: 'small button right round' %>
+      </div>
+    </div>
+
+  </fieldset>
+
+<% end %>
+
+<div class="row">
+  <div class="large-12 columns">
+    <%= link_to 'Back to Product Categories', product_categories_path, class: 'small button secondary' %>
+  </div>
+</div>

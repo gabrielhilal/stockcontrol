@@ -1,0 +1,33 @@
+<h1>Listing Suppliers</h1>
+<div class="row">
+  <div class="large-12 columns">
+    <table>
+      <thead>
+        <tr>
+          <th><%= link_to 'Name', sort: 'name' %></th>
+          <th><%= link_to 'Telephone', sort: 'telephone' %></th>
+          <th><%= link_to 'Email', sort: 'email' %></th>
+          <th colspan="2"></th>
+         </tr>
+      </thead>
+
+      <tbody>
+        <% @suppliers.each do |supplier| %>
+        <tr>
+          <td><%= supplier.name %></td>
+          <td><%= supplier.telephone %></td>
+          <td><%= supplier.email %></td>
+          <td class="text-right"><%= link_to 'Edit', edit_supplier_path(supplier), class: 'tiny button secondary round' %></td>
+          <td class="text-right"><%= link_to 'Delete', supplier, method: :delete, data: { confirm: "Venue #{supplier.name} will be deleted. Are you sure?" }, class: 'tiny button alert round' %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="row">
+  <div class="large-12 columns text-right">
+    <%= link_to 'New Supplier', new_supplier_path, class: 'small button round' %>
+  </div>
+</div>

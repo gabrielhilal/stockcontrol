@@ -1,0 +1,33 @@
+<h1>Listing Menus</h1>
+<div class="row">
+  <div class="large-12 columns">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Default</th>
+          <th colspan="2"></th>
+         </tr>
+      </thead>
+
+      <tbody>
+        <% @menus.each do |menu| %>
+        <tr>
+          <td><%= link_to menu.name, menu_path(menu) %></td>
+          <td><%= simple_format(menu.description) %></td>
+          <td><%= menu.current ? 'Yes' : (link_to 'Set Default', set_default_menu_path(menu), class: 'tiny button round') %></td>
+          <td class="text-right"><%= link_to 'Edit', edit_menu_path(menu), class: 'tiny button secondary round' %></td>
+          <td class="text-right"><%= link_to 'Delete', menu, method: :delete, data: { confirm: "Menu #{menu.name} will be deleted. Are you sure?" }, class: 'tiny button alert round' %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="row">
+  <div class="large-12 columns text-right">
+    <%= link_to 'New Menu', new_menu_path, class: 'small button round' %>
+  </div>
+</div>
