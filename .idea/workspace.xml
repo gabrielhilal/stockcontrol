@@ -114,10 +114,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="foundation_and_overrides.scss" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/foundation_and_overrides.scss">
+      <file leaf-file-name="application.css" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/application.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1" column="2" selection-start="56" selection-end="56" vertical-scroll-proportion="0.031185031">
+            <state line="21" column="40" selection-start="644" selection-end="644" vertical-scroll-proportion="0.65488565">
               <folding />
             </state>
           </provider>
@@ -1167,13 +1167,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/application.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="0" selection-start="701" selection-end="746" vertical-scroll-proportion="0.5301455">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/products/show.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="4" column="44" selection-start="120" selection-end="149" vertical-scroll-proportion="0.13129103">
@@ -1209,6 +1202,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/foundation_and_overrides.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="0" selection-start="54" selection-end="54" vertical-scroll-proportion="0.031185031">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Gemfile">
       <provider selected="true" editor-type-id="text-editor">
         <state line="39" column="55" selection-start="1089" selection-end="1089" vertical-scroll-proportion="0.0">
@@ -1216,9 +1216,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/foundation_and_overrides.scss">
+    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/application.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="2" selection-start="56" selection-end="56" vertical-scroll-proportion="0.031185031">
+        <state line="21" column="40" selection-start="644" selection-end="644" vertical-scroll-proportion="0.65488565">
           <folding />
         </state>
       </provider>
