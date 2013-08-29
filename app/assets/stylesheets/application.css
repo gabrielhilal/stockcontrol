@@ -14,12 +14,6 @@
  = require foundation_and_overrides
 */
 
-@media print {
-  div:not(.reveal-modal) {
-    display: inherit !important;
-  }
-}
-
 .fix_row {
   height: auto;
 }

@@ -117,7 +117,7 @@
       <file leaf-file-name="application.css" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/application.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="40" selection-start="644" selection-end="644" vertical-scroll-proportion="0.65488565">
+            <state line="14" column="2" selection-start="561" selection-end="561" vertical-scroll-proportion="0.43659043">
               <folding />
             </state>
           </provider>
@@ -158,11 +158,11 @@
         <option value="$PROJECT_DIR$/app/controllers/beverages_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/beverages/index.html.erb" />
         <option value="$PROJECT_DIR$/app/models/beverage.rb" />
-        <option value="$PROJECT_DIR$/app/assets/stylesheets/application.css" />
         <option value="$PROJECT_DIR$/app/views/products/show.html.erb" />
         <option value="$PROJECT_DIR$/Gemfile" />
         <option value="$PROJECT_DIR$/db/seeds.rb" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/foundation_and_overrides.scss" />
+        <option value="$PROJECT_DIR$/app/assets/stylesheets/application.css" />
       </list>
     </option>
   </component>
@@ -1218,7 +1218,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/application.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="40" selection-start="644" selection-end="644" vertical-scroll-proportion="0.65488565">
+        <state line="14" column="2" selection-start="561" selection-end="561" vertical-scroll-proportion="0.43659043">
           <folding />
         </state>
       </provider>
