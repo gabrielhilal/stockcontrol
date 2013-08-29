@@ -14,4 +14,12 @@ class Beverage < ActiveRecord::Base
   validates :beverage_category_id, :name, presence: true
   validates :name, uniqueness: true
 
+  def self.search(search)
+    if search
+      where('beverages.name ILIKE ? OR beverages.description ILIKE ? OR beverages.method ILIKE ?', "%#{search}%", "%#{search}%", "%#{search}%")
+    else
+      all
+    end
+  end
+
 end

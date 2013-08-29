@@ -18,20 +18,26 @@
         <li><%= link_to 'New Supplier', new_supplier_path %></li>
       </ul>
     </li>
-    <li class="has-dropdown"><%= link_to 'Products', products_path %>
-      <ul class="dropdown">
-        <li><%= link_to 'List Categories', product_categories_path %></li>
-        <li><%= link_to 'New Category', new_product_category_path %></li>
-        <li class="divider"></li>
-        <li><%= link_to 'List Products', products_path %></li>
-        <li><%= link_to 'New Product', new_product_path %></li>
-      </ul>
-    </li>
-    <li class="has-dropdown"><%= link_to 'Menus', menus_path %>
-      <ul class="dropdown">
-        <li><%= link_to 'List Menus', menus_path %></li>
-        <li><%= link_to 'New Menu', new_menu_path %></li>
-      </ul>
-    </li>
   </ul>
 </li>
+<li class="divider"></li>
+<li class="has-dropdown"><%= link_to 'Menus', menus_path %>
+  <ul class="dropdown">
+    <li><%= link_to 'List Menus', menus_path %></li>
+    <li><%= link_to 'New Menu', new_menu_path %></li>
+  </ul>
+</li>
+<li class="divider"></li>
+<li class="has-dropdown"><%= link_to 'Products', products_path %>
+  <ul class="dropdown">
+    <li><%= link_to 'List Categories', product_categories_path %></li>
+    <li><%= link_to 'New Category', new_product_category_path %></li>
+    <li class="divider"></li>
+    <li><%= link_to 'List Products', products_path %></li>
+    <li><%= link_to 'New Product', new_product_path %></li>
+  </ul>
+</li>
+<li class="divider"></li>
+
+
+

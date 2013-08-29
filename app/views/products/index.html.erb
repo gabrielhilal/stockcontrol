@@ -1,4 +1,15 @@
 <h1>Listing Products</h1>
+<div class="row collapse">
+  <%= form_tag products_path, method: :get do %>
+  <div class="large-offset-8 large-3 columns small-8">
+    <%= text_field_tag :search, params[:search] %>
+  </div>
+  <div class="large-1 columns small-4">
+    <%= submit_tag "Search", name: nil, class: 'button postfix' %>
+  </div>
+</div>
+<% end %>
+
 <div class="row">
   <div class="large-12 columns">
     <table>
@@ -15,7 +26,7 @@
       <tbody>
         <% @products.each do |product| %>
         <tr>
-          <td><%= product.name %></td>
+          <td><%= link_to product.name, product_path(product) %></td>
           <td><%= simple_format(product.description) %></td>
           <td><%= "#{product.quantity} #{product.measure}" %></td>
           <td><%= product.product_category.name %></td>

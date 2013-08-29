@@ -1,0 +1,77 @@
+<div class="row">
+  <div class="large-12 columns">
+    <table>
+      <caption>Stock between Venues</caption>
+      <thead>
+        <tr>
+          <th><%= link_to "Date", sort_table1: 'date' %></th>
+          <th><%= link_to "From", sort_table1: 'sender_id' %></th>
+          <th><%= link_to "To", sort_table1: 'recipient_id' %></th>
+          <th><%= link_to "Status", sort_table1: 'status' %></th>
+          <th class="text-right">Products</th>
+          <th class="text-right">Total Items</th>
+          <th colspan="2"></th>
+         </tr>
+      </thead>
+
+      <tbody>
+        <% @not_wastage.each do |transfer| %>
+        <tr>
+          <td><%= link_to transfer.date.strftime('%d/%m/%Y'), transfer_stock_path(transfer) %></td>
+          <td><%= transfer.sender.name %></td>
+          <td><%= transfer.recipient.name %></td>
+          <td><%= !transfer.status ? 'Not Confirmed' : 'Confirmed'%></td>
+          <td class="text-right"><%= transfer.products.count %></td>
+          <td class="text-right"><%= number_with_precision(transfer.items, precision: 0) %></td>
+          <td class="text-right"><%= link_to 'Edit', edit_transfer_stock_path(transfer), class: 'tiny button secondary round' %></td>
+          <td class="text-right"><%= link_to 'Delete', transfer, method: :delete, data: { confirm: "Transfer on #{transfer.date} will be deleted. Are you sure?" }, class: 'tiny button alert round' %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="row">
+  <div class="large-12 columns text-right">
+    <%= link_to 'New Transfer', new_transfer_stock_path, class: 'small button round' %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="large-12 columns">
+    <table>
+      <caption>Wastage Control</caption>
+      <thead>
+        <tr>
+          <th><%= link_to "Date", sort_table2: 'date' %></th>
+          <th><%= link_to "Venue", sort_table2: 'sender_id' %></th>
+          <th><%= link_to "Status", sort_table2: 'status' %></th>
+          <th class="text-right">Products</th>
+          <th class="text-right">Total Items</th>
+          <th colspan="2"></th>
+         </tr>
+      </thead>
+
+      <tbody>
+        <% @wastage.each do |transfer| %>
+        <tr>
+          <td><%= link_to transfer.date.strftime('%d/%m/%Y'), transfer_stock_path(transfer) %></td>
+          <td><%= transfer.sender.name %></td>
+          <% if !transfer.status and transfer.recipient.nil? %>
+           <td><%= link_to 'Confirm Wastage', confirm_transfer_stock_path(transfer), class: 'tiny button round' %></td>
+          <% elsif !transfer.status %>
+           <td>Not Confirmed</td>
+          <% else %>
+            <td>Confirmed</td>
+          <% end %>
+          <td class="text-right"><%= transfer.products.count %></td>
+          <td class="text-right"><%= number_with_precision(transfer.items, precision: 0) %></td>
+          <td class="text-right"><%= link_to 'Edit', edit_transfer_stock_path(transfer), class: 'tiny button secondary round' %></td>
+          <td class="text-right"><%= link_to 'Delete', transfer, method: :delete, data: { confirm: "Transfer on #{transfer.date} will be deleted. Are you sure?" }, class: 'tiny button alert round' %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

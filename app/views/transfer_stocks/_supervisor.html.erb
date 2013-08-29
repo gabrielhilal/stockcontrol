@@ -1,0 +1,64 @@
+<div class="row">
+  <div class="large-12 columns">
+    <table>
+      <caption>Stock Sent from <%= current_user.venue.name %></caption>
+      <thead>
+        <tr>
+          <th><%= link_to "Date", sort_table1: 'date' %></th>
+          <th><%= link_to "To", sort_table1: 'recipient_id' %></th>
+          <th><%= link_to "Status", sort_table1: 'status' %></th>
+          <th class="text-right">Products</th>
+          <th class="text-right">Total Items</th>
+         </tr>
+      </thead>
+
+      <tbody>
+        <% @sent.each do |transfer| %>
+        <tr>
+          <td><%= transfer.date.strftime('%d/%m/%Y') %></td>
+          <td><%= transfer.recipient.nil? ? 'Wastage' : transfer.recipient.name %></td>
+          <td><%= !transfer.status ? 'Not Confirmed' : 'Confirmed' %></td>
+          <td class="text-right"><%= transfer.products.count %></td>
+          <td class="text-right"><%= number_with_precision(transfer.items, precision: 0) %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="row">
+  <div class="large-12 columns text-right">
+    <%= link_to 'New Transfer', new_transfer_stock_path, class: 'small button round' %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="large-12 columns">
+    <table>
+      <caption>Stock Received by <%= current_user.venue.name %></caption>
+      <thead>
+        <tr>
+          <th><%= link_to "Date", sort_table2: 'date' %></th>
+          <th><%= link_to "From", sort_table2: 'sender_id' %></th>
+          <th><%= link_to "Status", sort_table2: 'status' %></th>
+          <th class="text-right">Products</th>
+          <th class="text-right">Total Items</th>
+         </tr>
+      </thead>
+
+      <tbody>
+        <% @received.each do |transfer| %>
+        <tr>
+          <td><%= transfer.date.strftime('%d/%m/%Y') %></td>
+          <td><%= transfer.sender.name %></td>
+          <td><%= !transfer.status ? (link_to 'Confirm Receipt', confirm_transfer_stock_path(transfer), class: 'tiny button round') : 'Confirmed' %></td>
+          <td class="text-right"><%= transfer.products.count %></td>
+          <td class="text-right"><%= number_with_precision(transfer.items, precision: 0) %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+</div>

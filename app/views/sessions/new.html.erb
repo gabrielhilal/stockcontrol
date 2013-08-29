@@ -1,15 +1,27 @@
 <h1>Login</h1>
 
 <%= form_tag sessions_path do %>
-  <div class="field">
-    <%= label_tag :username %>
-    <%= text_field_tag :username, params[:username] %>
+
+  <fieldset>
+
+  <div class="row">
+    <div class="large-4 large-centered columns">
+      <%= label_tag :username %>
+      <%= text_field_tag :username, params[:username] %>
+    </div>
   </div>
-  <div class="field">
-    <%= label_tag :password %>
-    <%= password_field_tag :password %>
+  <div class="row">
+    <div class="large-4 large-centered columns">
+      <%= label_tag :password %>
+      <%= password_field_tag :password %>
+    </div>
   </div>
-  <div class="actions">
-    <%= submit_tag 'Login' %>
+  <div class="row">
+    <div class="large-4 large-centered columns">
+      <%= submit_tag 'Login', class: 'small button right round' %>
+    </div>
   </div>
+
+  </fieldset>
 <% end %>
+

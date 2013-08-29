@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
+ruby '2.0.0'
 
 # Use postgresql as the database for Active Record
 gem 'pg'
@@ -16,7 +17,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 
 gem 'compass-rails', github: 'milgner/compass-rails', branch: 'rails4'
-gem 'zurb-foundation'
+gem 'zurb-foundation', '~> 4.0.0'
 gem 'launchy'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
@@ -62,3 +63,5 @@ group :development, :test do
 end
 
 gem 'nested_form'
+gem 'lazy_high_charts'
+gem 'groupdate'

@@ -3,7 +3,7 @@ class BeveragesController < ApplicationController
   before_action :manager
 
   def index
-    @beverages = Beverage.order(params[:sort])
+    @beverages = Beverage.search(params[:search]).order(params[:sort])
   end
 
   def show

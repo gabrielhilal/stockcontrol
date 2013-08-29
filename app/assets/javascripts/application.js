@@ -1,3 +1,4 @@
+
 /*
  This is a manifest file that'll be compiled into application.js, which will include all the files
  listed below.
@@ -13,12 +14,15 @@
 
  = require jquery
  = require jquery_ujs
-//= require foundation
-//= require jquery_nested_form
  = require foundation
+ = require jquery_nested_form
  = require turbolinks
+ = require highcharts/highcharts
+ = require highcharts/highcharts-more
+ = require highcharts/highstock
  = require_tree .
  */
+
 
 $(document).foundation();
 

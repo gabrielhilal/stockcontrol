@@ -44,7 +44,7 @@
     <div class="row">
       <div class="large-6 columns">
         <%= item.label :product %>
-        <%= item.grouped_collection_select(:product_id, ProductCategory.all, :products, :name, :id, :name, {include_blank: 'Select Product'}) %>
+        <%= item.grouped_collection_select(:product_id, ProductCategory.all, :products, :name, :id, :display_details, {include_blank: 'Select Product'}) %>
       </div>
       <div class="large-6 columns">
         <%= item.label :quantity %>

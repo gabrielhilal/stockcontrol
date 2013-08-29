@@ -23,7 +23,7 @@
           <td><%= "#{product.quantity} #{product.measure}" %></td>
           <td><%= product.product_category.name %></td>
           <% @venues.each do |venue| %>
-          <td><%= number_with_precision(venue.calc_stock(product), precision: 1) %> </td>
+          <td><%= number_with_precision(venue.calc_stock(product), precision: 2) %> </td>
           <% end %>
         </tr>
         <% end %>

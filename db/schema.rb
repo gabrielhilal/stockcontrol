@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130822101506) do
+ActiveRecord::Schema.define(version: 20130828131207) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -118,6 +118,25 @@ ActiveRecord::Schema.define(version: 20130822101506) do
     t.string   "name"
     t.string   "telephone"
     t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "transfer_lines", force: true do |t|
+    t.integer  "transfer_stock_id"
+    t.integer  "product_id"
+    t.decimal  "quantity"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "transfer_stocks", force: true do |t|
+    t.date     "date"
+    t.string   "type"
+    t.text     "description"
+    t.integer  "sender_id"
+    t.integer  "recipient_id"
+    t.boolean  "status"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -1,0 +1,35 @@
+<h1><%= @product.display_details %></h1>
+
+<div class="row">
+  <div class="large-12 text-center columns">
+    <ul class="button-group fix_button_group">
+      <li><%= link_to '3 months', "#{product_path}?period=3", class: 'small secondary button' %></li>
+      <li><%= link_to '6 months', "#{product_path}?period=6", class: 'small secondary button' %></li>
+      <li><%= link_to '9 months', "#{product_path}?period=9", class: 'small secondary button' %></li>
+      <li><%= link_to '1 year',  "#{product_path}?period=12", class: 'small secondary button' %></li>
+      <li><%= link_to '2 years', "#{product_path}?period=24", class: 'small secondary button' %></li>
+      <li><%= link_to '3 years', "#{product_path}?period=36", class: 'small secondary button' %></li>
+      <li><%= link_to '4 years', "#{product_path}?period=48", class: 'small secondary button' %></li>
+      <li><%= link_to '5 years', "#{product_path}?period=60", class: 'small secondary button' %></li>
+    </ul>
+  </div>
+</div>
+
+<div class="row">
+  <div class="large-12 columns">
+    <%= high_chart("price", @price) %>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="large-12 columns">
+    <%= high_chart("purchases", @purchases) %>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="large-12 columns">
+    <%= high_chart("sales", @sales) %>
+  </div>
+</div>
+

@@ -1,0 +1,7 @@
+<h1>Listing Transfers of Stock</h1>
+
+<%= render 'transfer_stocks/director' if current_user.director? %>
+<%= render 'transfer_stocks/manager' if current_user.role == 'manager' %>
+<%= render 'transfer_stocks/supervisor' if current_user.role == 'supervisor' %>
+
+

@@ -1,0 +1,62 @@
+<h1>Transfer of Stock Details</h1>
+
+<div class="row">
+  <div class="large-4 columns">
+    <h5>Transfer of Stock on <%= @transfer.date.strftime('%b %d, %Y') %></h5>
+    <%= @transfer.products.count %> products<br />
+    <%= number_with_precision(@transfer.items, precision: 0) %> items<br />
+  </div>
+  <div class="large-4 columns">
+    <h5><b>From:</b></h5>
+    <b>Venue:</b> <%= @transfer.sender.name %><br />
+    <b>Telephone:</b> <%= @transfer.sender.telephone %><br />
+    <b>Email:</b> <%= mail_to @transfer.sender.email %>
+  </div>
+  <div class="large-4 columns">
+    <% if @transfer.recipient.nil? %>
+      <h5>Wastage</h5>
+    <% else %>
+      <h5><b>To:</b></h5>
+      <b>Venue:</b> <%= @transfer.recipient.name %><br />
+      <b>Telephone:</b> <%= @transfer.recipient.telephone %><br />
+      <b>Email:</b> <%= mail_to @transfer.recipient.email %>
+    <% end %>
+  </div>
+</div>
+<div class="row">
+  <div class="large-12 columns">
+  <%= simple_format(@transfer.description) %>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="large-12 columns">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Quantity</th>
+         </tr>
+      </thead>
+
+      <tbody>
+        <% @transfer.transfer_lines.each do |line| %>
+        <tr>
+          <td><%= line.product.display_details %></td>
+          <td><%= line.quantity %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="row">
+  <div class="large-6 columns">
+    <%= link_to 'Back to Transfers of Stock', transfer_stocks_path, class: 'small button secondary' %>
+  </div>
+  <div class="large-6 text-right columns">
+    <%= link_to 'Confirm Wastage', confirm_transfer_stock_path(@transfer), class: 'small button round' if (!@transfer.status and @transfer.recipient.nil?) %>
+    <%= link_to 'Edit', edit_transfer_stock_path, class: 'small button secondary round' %>
+    <%= link_to 'Delete', @transfer, method: :delete, data: { confirm: "Transfer on #{@transfer.date} will be deleted. Are you sure?" }, class: 'small button alert round' %>
+  </div>
+</div>

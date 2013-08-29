@@ -1,6 +1,9 @@
 <li class="has-dropdown"><%= link_to 'Stock', stock_products_path %>
   <ul class="dropdown">
     <li><%= link_to 'View Products In Stock', stock_products_path %></li>
-    <li><%= link_to 'New Purchase', new_purchase_path %></li>
+    <li class="divider"></li>
+    <li><%= link_to 'View Transfers of Stock', transfer_stocks_path %></li>
+    <li><%= link_to 'Transfer Stock', new_transfer_stock_path %></li>
   </ul>
 </li>
+<li class="divider"></li>

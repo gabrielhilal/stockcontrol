@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
 
   def self.search(search)
     if search
-      includes(:venue).where('username LIKE ? OR role LIKE ? OR venues.name LIKE ?', "%#{search}%", "%#{search}%", "%#{search}%")
+      includes(:venue).where('username ILIKE ? OR role ILIKE ? OR venues.name ILIKE ?', "%#{search}%", "%#{search}%", "%#{search}%")
     else
       all
     end

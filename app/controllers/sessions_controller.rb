@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       flash[:notice] = 'Welcome ' + current_user.username
-      redirect_to home_path
+      redirect_to root_path
     else
       flash.now[:error] = 'Invalid username/password combination.'
       render 'new'

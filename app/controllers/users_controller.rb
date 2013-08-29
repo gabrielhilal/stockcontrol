@@ -1,12 +1,15 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :director
+  before_action :set_user, only: [:edit, :update, :destroy]
+  before_action :director, except: :show
+  skip_before_action :authorize, only: :show
 
   def index
     @users = User.search(params[:search]).where.not(id: current_user.id).order(params[:sort])
   end
 
   def show
+    redirect_to login_path unless !current_user.nil?
+    @user = current_user
   end
 
   def new
