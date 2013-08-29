@@ -59,9 +59,9 @@ group :development, :test do
   gem 'rspec-rails', '~> 2.0'
   gem 'factory_girl_rails'
   gem 'capybara'
-  gem 'faker'
 end
 
+gem 'faker'
 gem 'nested_form'
 gem 'lazy_high_charts'
 gem 'groupdate'
