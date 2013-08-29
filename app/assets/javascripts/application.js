@@ -14,6 +14,7 @@
 
  = require jquery
  = require jquery_ujs
+//= require foundation
  = require foundation
  = require jquery_nested_form
  = require turbolinks
