@@ -17,6 +17,7 @@ class ProductsController < ApplicationController
   end
 
   def show
+    redirect_to products_path if @product.quantity == 0
     start_date = Date.today << (params[:period].nil? ? 12 : params[:period].to_f)
     date_range = (start_date..Date.today).select {|d| d.day == 1}
 

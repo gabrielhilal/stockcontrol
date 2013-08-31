@@ -5,7 +5,7 @@ class Venue < ActiveRecord::Base
 
   has_many :sales, dependent: :restrict_with_exception
 
-  validates :name, :telephone, :email, presence: true
+  validates :name, presence: true
   validates :name, uniqueness: true
 
   has_many :sent_stocks, class_name: 'TransferStock', foreign_key: :sender_id, dependent: :restrict_with_exception

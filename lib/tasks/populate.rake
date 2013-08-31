@@ -6,7 +6,7 @@
 
 namespace :db do
   desc "Erase and fill database"
-  task :populate => :environment do
+  task populate: :environment do
     require 'faker'
 
     Rake::Task['db:drop'].invoke
@@ -18,6 +18,7 @@ namespace :db do
     Venue.create!(name: 'Lost Angel', telephone: '0207 622 2112', email: 'info@lostangel.co.uk')
     Venue.create!(name: 'Lost & Co', telephone: '0208 780 2235', email: 'info@lostputney.co.uk')
     Venue.create!(name: 'Ales & Tails', telephone: '0208 891 5413', email: 'info@alesandtails.co.uk')
+    Venue.create!(name: 'External Events', telephone: '', email: '')
 
     #create the owner and director users
     User.create!(username: 'owner', role: 'director', password: 'secret', password_confirmation: 'secret')
@@ -28,6 +29,7 @@ namespace :db do
     User.create!(username: 'angel manager', role: 'manager', venue_id: 2, password: 'secret', password_confirmation: 'secret')
     User.create!(username: 'co manager', role: 'manager', venue_id: 3, password: 'secret', password_confirmation: 'secret')
     User.create!(username: 'ales manager', role: 'manager', venue_id: 4, password: 'secret', password_confirmation: 'secret')
+    User.create!(username: 'events manager', role: 'manager', venue_id: 5, password: 'secret', password_confirmation: 'secret')
 
     #create a supervisor for each venue
     User.create!(username: 'society supervisor', role: 'supervisor', venue_id: 1, password: 'secret', password_confirmation: 'secret')
@@ -56,7 +58,8 @@ namespace :db do
     ProductCategory.create!(name: 'Vermouth', description: "A sweet or dry fortified wine flavored with aromatic herbs and used chiefly in mixed drinks.")
     ProductCategory.create!(name: 'Vodka', description: "Originally distilled from fermented wheat mash but now also made from a mash of rye, corn, or potatoes.")
     ProductCategory.create!(name: 'Whiskey/Bourbon', description: "distilled from grain, potatoes, etc., especially in Scotland, Ireland, and the United States. In the United States, whisky is generally distilled from maize, rye, or wheat, but in Scotland and Ireland it is often made from malted barley.")
-    ProductCategory.create!(name: 'White Wine', description: "any wine of a clear, transparent color, bordering on white, as Madeira, sherry, Lisbon, etc.; -- distinguished from wines of a deep red color, as port and Burgundy.")
+    ProductCategory.create!(name: 'White Wine', description: "Any wine of a clear, transparent color, bordering on white, as Madeira, sherry, Lisbon, etc.; -- distinguished from wines of a deep red color, as port and Burgundy.")
+    ProductCategory.create!(name: 'Condiment', description: "Substance that is added to some cocktails to impart a particular flavor and/or enhance its flavor")
 
     #create some products for each category
       #1-Beer
@@ -126,31 +129,37 @@ namespace :db do
       Product.create!(name: 'Cuvée Le Bosq Blanc, France', description: "Fruity nose of citrus and passion fruit, lovely fresh aromatics and a clean, well-balanced freshness.", quantity: '750', measure: 'ML', product_category_id: 15)
       Product.create!(name: 'Hazy View, Chenin Blanc, South Africa', description: "Fresh and aromatic aromas with crisp acidity, finishing on a long, fruity note", quantity: '750', measure: 'ML', product_category_id: 15)
 
-    #create 5 fake suppliers
-    5.times do
-      Supplier.create!(name: Faker::Name.name, telephone: Faker::PhoneNumber.phone_number, email: Faker::Internet.email )
-    end
+      #16-Condiment
+      Product.create!(name: 'Black Pepper', description: "", quantity: '0', measure: 'grinds', product_category_id: 16)
+
+
+    #create 3 suppliers and 1 for week shopping
+    Supplier.create!(name: Faker::Name.name, telephone: Faker::PhoneNumber.phone_number, email: Faker::Internet.email )
+    Supplier.create!(name: Faker::Name.name, telephone: Faker::PhoneNumber.phone_number, email: Faker::Internet.email )
+    Supplier.create!(name: Faker::Name.name, telephone: Faker::PhoneNumber.phone_number, email: Faker::Internet.email )
+    Supplier.create!(name: 'purchases during the week', telephone: '', email: '' )
+
 
     #create 500 fake purchases
     50.times do
       from = Time.local(2010, 1, 1)
       to =  Time.now
       Purchase.create!(
-        supplier_id: 1 + rand(Supplier.all.count),
-        venue_id: 1 + rand(Venue.all.count),
+        supplier_id: 1 + rand(Supplier.all.count - 1),       # -1 to not include purchases during the week
+        venue_id: 1 + rand(Venue.all.count - 1),             # -1 to not include External Events
         no: Faker::Number.number(5),
-        date: Time.at(from + rand * (to.to_f - from.to_f))
-      )
-    end
+        date: Time.at(from + rand * (to.to_f - from.to_f))   # rand is between 0 and 1
+      )                                                      # to - from is the difference in time
+    end                                                      # rand 0 result from | rand 1 result today
 
     #create 500 purchase_lines
-    500.times do |p|
+    500.times do
       PurchaseLine.create!(
         purchase_id: 1 + rand(Purchase.all.count),
         product_id: 1 + rand(Product.all.count),
         quantity: 1 + rand(10),
-        price: ((50 - 5) * rand().round(2) + 5).round(2)
-      )
+        price: (5 + rand * (50 - 5)).round(2)                # price between 5 and 50
+      )                                                      # rand 0 result 5 | rand 1 result 50
     end
 
     #create beverage_categories
@@ -168,118 +177,119 @@ namespace :db do
     BeverageCategory.create!(name: 'Wines', description: "")
 
     #create beverages
-      #16-Beers
+      #17-Beers
         #Brahma
-        Beverage.create!(name: 'Brahma', glass: '', garnish: '', description: "", method: "", beverage_category_id: 16)
+        Beverage.create!(name: 'Brahma', glass: '', garnish: '', description: "", method: "", beverage_category_id: 17)
         #recipe
           Recipe.create!(beverage_id: 1, product_id: Product.where(name: 'Brahma').first.id, quantity: 330)
 
         #Peroni
-        Beverage.create!(name: 'Peroni', glass: '', garnish: '', description: "", method: "", beverage_category_id: 16)
+        Beverage.create!(name: 'Peroni', glass: '', garnish: '', description: "", method: "", beverage_category_id: 17)
         #recipe
           Recipe.create!(beverage_id: 2, product_id: Product.where(name: 'Peroni').first.id, quantity: 330)
 
         #Brahma
-        Beverage.create!(name: 'Estrella', glass: '', garnish: '', description: "", method: "", beverage_category_id: 16)
+        Beverage.create!(name: 'Estrella', glass: '', garnish: '', description: "", method: "", beverage_category_id: 17)
         #recipe
           Recipe.create!(beverage_id: 3, product_id: Product.where(name: 'Estrella').first.id, quantity: 330)
 
-      #17-Brandy Based
+      #18-Brandy Based
         #Single Courvoisier
-        Beverage.create!(name: 'Single Courvoisier', glass: 'Rocks', garnish: '', description: "", method: "", beverage_category_id: 17)
+        Beverage.create!(name: 'Single Courvoisier', glass: 'Rocks', garnish: '', description: "", method: "", beverage_category_id: 18)
           #recipe
           Recipe.create!(beverage_id: 4, product_id: Product.where(name: 'Courvoisier').first.id, quantity: 25)
 
         #Double Courvoisier
-        Beverage.create!(name: 'Double Courvoisier', glass: 'Rocks', garnish: '', description: "", method: "", beverage_category_id: 17)
+        Beverage.create!(name: 'Double Courvoisier', glass: 'Rocks', garnish: '', description: "", method: "", beverage_category_id: 18)
           #recipe
           Recipe.create!(beverage_id: 5, product_id: Product.where(name: 'Courvoisier').first.id, quantity: 50)
 
-      #18-Champagnes/Sparkling
+      #19-Champagnes/Sparkling
         #Prosecco Carpenè Malvolti glass 125ml
-        Beverage.create!(name: 'Prosecco Carpenè Malvolti - Glass', glass: 'flute', garnish: '', description: "", method: "", beverage_category_id: 18)
+        Beverage.create!(name: 'Prosecco Carpenè Malvolti - Glass', glass: 'flute', garnish: '', description: "", method: "", beverage_category_id: 19)
         #recipe
           Recipe.create!(beverage_id: 6, product_id: Product.where(name: 'Prosecco Carpenè Malvolti').first.id, quantity: 125)
 
         #Prosecco Carpenè Malvolti bottle 750ml
-        Beverage.create!(name: 'Prosecco Carpenè Malvolti - Bottle', glass: '', garnish: '', description: "", method: "", beverage_category_id: 18)
+        Beverage.create!(name: 'Prosecco Carpenè Malvolti - Bottle', glass: '', garnish: '', description: "", method: "", beverage_category_id: 19)
         #recipe
           Recipe.create!(beverage_id: 7, product_id: Product.where(name: 'Prosecco Carpenè Malvolti').first.id, quantity: 750)
 
-      #19-Classic Cocktails
+      #20-Classic Cocktails
         #beline
-        Beverage.create!(name: 'Beline', glass: 'Flute', garnish: '', description: "", method: "Puree and liqueur in ice. Stir, add Prosecco and strain.", beverage_category_id: 19)
+        Beverage.create!(name: 'Beline', glass: 'Flute', garnish: '', description: "", method: "Puree and liqueur in ice. Stir, add Prosecco and strain.", beverage_category_id: 20)
           #recipe
           Recipe.create!(beverage_id: 8, product_id: Product.where(name: 'Peach Puree').first.id, quantity: 25)
           Recipe.create!(beverage_id: 8, product_id: Product.where(name: 'Crème de Pêche').first.id, quantity: 10)
           Recipe.create!(beverage_id: 8, product_id: Product.where(name: 'Prosecco Carpenè Malvolti').first.id, quantity: 100)
         #Blood Mary
-        Beverage.create!(name: 'Blood Mary', glass: 'Catalina', garnish: 'Celery Stick, Lemon and Lime', description: "", method: "Ingredients in ice. Shake lightly and strain.", beverage_category_id: 19)
+        Beverage.create!(name: 'Blood Mary', glass: 'Catalina', garnish: 'Celery Stick, Lemon and Lime', description: "", method: "Ingredients in ice. Shake lightly and strain.", beverage_category_id: 20)
           #recipe
           Recipe.create!(beverage_id: 9, product_id: Product.where(name: 'Stolichnaya').first.id, quantity: 50)
           Recipe.create!(beverage_id: 9, product_id: Product.where(name: 'Lemon Juice').first.id, quantity: 25)
           Recipe.create!(beverage_id: 9, product_id: Product.where(name: 'Tomato Juice').first.id, quantity: 70)
+          Recipe.create!(beverage_id: 9, product_id: Product.where(name: 'Black Pepper').first.id, quantity: 6)
 
-      #20-House Cocktails
+      #21-House Cocktails
         #Black Cherry Manhattan
-        Beverage.create!(name: 'Black Cherry Manhattan', glass: 'Martini', garnish: 'Black Cherry', description: "", method: "Ingredients in ice. Stir and double strain.", beverage_category_id: 20)
+        Beverage.create!(name: 'Black Cherry Manhattan', glass: 'Martini', garnish: 'Black Cherry', description: "", method: "Ingredients in ice. Stir and double strain.", beverage_category_id: 21)
           #recipe
           Recipe.create!(beverage_id: 10, product_id: Product.where(name: 'Jim Beam Red Stag').first.id, quantity: 25)
           Recipe.create!(beverage_id: 10, product_id: Product.where(name: 'Pikesville Straight Rye').first.id, quantity: 25)
           Recipe.create!(beverage_id: 10, product_id: Product.where(name: 'Noilly Prat').first.id, quantity: 10)
 
-      #21-Gin Based
+      #22-Gin Based
         #Single Beefeater
-        Beverage.create!(name: 'Single Beefeater', glass: 'Rocks', garnish: '', description: "", method: "", beverage_category_id: 21)
+        Beverage.create!(name: 'Single Beefeater', glass: 'Rocks', garnish: '', description: "", method: "", beverage_category_id: 22)
           #recipe
           Recipe.create!(beverage_id: 11, product_id: Product.where(name: 'Beefeater').first.id, quantity: 25)
 
         #Double Beefeater
-        Beverage.create!(name: 'Double Beefeater', glass: 'Rocks', garnish: '', description: "", method: "", beverage_category_id: 21)
+        Beverage.create!(name: 'Double Beefeater', glass: 'Rocks', garnish: '', description: "", method: "", beverage_category_id: 22)
           #recipe
           Recipe.create!(beverage_id: 12, product_id: Product.where(name: 'Beefeater').first.id, quantity: 50)
 
-      #22-Liqueur Based
+      #23-Liqueur Based
         #Single Crème de Pêche
-        Beverage.create!(name: 'Single Crème de Pêche', glass: 'Rocks', garnish: '', description: "", method: "", beverage_category_id: 22)
+        Beverage.create!(name: 'Single Crème de Pêche', glass: 'Rocks', garnish: '', description: "", method: "", beverage_category_id: 23)
           #recipe
           Recipe.create!(beverage_id: 13, product_id: Product.where(name: 'Crème de Pêche').first.id, quantity: 25)
 
         #Double Crème de Pêche
-        Beverage.create!(name: 'Double Crème de Pêche', glass: 'Rocks', garnish: '', description: "", method: "", beverage_category_id: 22)
+        Beverage.create!(name: 'Double Crème de Pêche', glass: 'Rocks', garnish: '', description: "", method: "", beverage_category_id: 23)
           #recipe
           Recipe.create!(beverage_id: 14, product_id: Product.where(name: 'Crème de Pêche').first.id, quantity: 50)
 
-      #23-Rum Based
+      #24-Rum Based
         #Single Santa Teresa
-        Beverage.create!(name: 'Single Santa Teresa', glass: 'Rocks', garnish: '', description: "", method: "", beverage_category_id: 23)
+        Beverage.create!(name: 'Single Santa Teresa', glass: 'Rocks', garnish: '', description: "", method: "", beverage_category_id: 24)
           #recipe
           Recipe.create!(beverage_id: 15, product_id: Product.where(name: 'Santa Teresa').first.id, quantity: 25)
 
         #Double Santa Teresa
-        Beverage.create!(name: 'Double Santa Teresa', glass: 'Rocks', garnish: '', description: "", method: "", beverage_category_id: 23)
+        Beverage.create!(name: 'Double Santa Teresa', glass: 'Rocks', garnish: '', description: "", method: "", beverage_category_id: 24)
           #recipe
           Recipe.create!(beverage_id: 16, product_id: Product.where(name: 'Santa Teresa').first.id, quantity: 50)
 
-      #24-Vermouth Based
+      #25-Vermouth Based
         #Single Martini Rosso
-        Beverage.create!(name: 'Single Martini Rosso', glass: 'Rocks', garnish: '', description: "", method: "", beverage_category_id: 24)
+        Beverage.create!(name: 'Single Martini Rosso', glass: 'Rocks', garnish: '', description: "", method: "", beverage_category_id: 25)
           #recipe
           Recipe.create!(beverage_id: 17, product_id: Product.where(name: 'Martini Rosso').first.id, quantity: 25)
 
         #Double Martini Rosso
-        Beverage.create!(name: 'Double Martini Rosso', glass: 'Rocks', garnish: '', description: "", method: "", beverage_category_id: 24)
+        Beverage.create!(name: 'Double Martini Rosso', glass: 'Rocks', garnish: '', description: "", method: "", beverage_category_id: 25)
           #recipe
           Recipe.create!(beverage_id: 18, product_id: Product.where(name: 'Martini Rosso').first.id, quantity: 50)
 
-      #25-Vodka Based
+      #26-Vodka Based
         #Single Stolichnaya
-        Beverage.create!(name: 'Single Stolichnaya', glass: 'Rocks', garnish: '', description: "", method: "", beverage_category_id: 25)
+        Beverage.create!(name: 'Single Stolichnaya', glass: 'Rocks', garnish: '', description: "", method: "", beverage_category_id: 26)
           #recipe
           Recipe.create!(beverage_id: 19, product_id: Product.where(name: 'Stolichnaya').first.id, quantity: 25)
 
         #Double Stolichnaya
-        Beverage.create!(name: 'Double Stolichnaya', glass: 'Rocks', garnish: '', description: "", method: "", beverage_category_id: 25)
+        Beverage.create!(name: 'Double Stolichnaya', glass: 'Rocks', garnish: '', description: "", method: "", beverage_category_id: 26)
           #recipe
           Recipe.create!(beverage_id: 20, product_id: Product.where(name: 'Stolichnaya').first.id, quantity: 50)
 

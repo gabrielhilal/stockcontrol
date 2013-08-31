@@ -26,9 +26,9 @@
       <tbody>
         <% @products.each do |product| %>
         <tr>
-          <td><%= link_to product.name, product_path(product) %></td>
+          <td><%= product.quantity == 0 ? product.name : (link_to product.name, product_path(product)) %></td>
           <td><%= simple_format(product.description) %></td>
-          <td><%= "#{product.quantity} #{product.measure}" %></td>
+          <td><%= product.quantity == 0 ? '-' : "#{product.quantity} #{product.measure}" %></td>
           <td><%= product.product_category.name %></td>
           <td class="text-right"><%= link_to 'Edit', edit_product_path(product), class: 'tiny button secondary round' %></td>
           <td class="text-right"><%= link_to 'Delete', product, method: :delete, data: { confirm: "Product #{product.name} will be deleted. Are you sure?" }, class: 'tiny button alert round' %></td>

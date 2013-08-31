@@ -1,17 +1,17 @@
-Feature: Manage Users
+Feature: Maintain Users
 
   In order to provide access to users into the application
   As the owner
   I want to create and manage users
 
   Background:
-    Given I am logged in as the "owner"
+    Given I am logged in as the "director"
 
   Scenario: List all users
-    And the users with roles bartender, director, manager exist
+    And the users with roles bartender, supervisor, manager exist
     When I go to the "users" page
     Then I should see "bartender"
-    And I should see "director"
+    And I should see "supervisor"
     And I should see "manager"
 
   Scenario: Create a new user successfully

@@ -13,7 +13,7 @@ Feature: Log in
     And I fill in "password" with "secret"
     And I press "Login"
     Then I should see "Welcome user"
-    And I should be redirected to the "home" page
+    And I should be redirected to the "users" page
 
   Scenario: User enters wrong email/password combination
     When I fill in "username" with "user"

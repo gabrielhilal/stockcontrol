@@ -17,6 +17,8 @@
 
   	<%= stylesheet_link_tag    "application" %>
   	<%= javascript_include_tag "vendor/custom.modernizr" %>
+    <%= javascript_include_tag "application" %>
+
     <%= csrf_meta_tags %>
   </head>
 
@@ -24,7 +26,7 @@
 
   <header>
     <nav class="top-bar">
-      <%= render 'layouts/nav' %>
+    <%= render 'layouts/nav' %>
     </nav>
     <%= render 'layouts/flash' %>
   </header>
@@ -37,8 +39,5 @@
     <%= render 'layouts/footer' %>
   </footer>
 
-    
-    <%= javascript_include_tag "application" %>
   </body>
 </html>
-

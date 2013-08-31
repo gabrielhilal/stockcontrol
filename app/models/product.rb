@@ -14,7 +14,7 @@ class Product < ActiveRecord::Base
   validates :name, uniqueness: true
 
   def display_details
-    "#{name} - #{quantity}/#{measure}"
+    quantity == 0 ? "#{name} - #{measure}" : "#{name} - #{quantity}/#{measure}"
   end
 
   def self.search(search)

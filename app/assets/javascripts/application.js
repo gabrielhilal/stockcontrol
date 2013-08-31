@@ -14,17 +14,12 @@
 
  = require jquery
  = require jquery_ujs
-//= require foundation
  = require foundation
  = require jquery_nested_form
  = require turbolinks
+ = require jquery.turbolinks
  = require highcharts/highcharts
- = require highcharts/highcharts-more
- = require highcharts/highstock
  = require_tree .
  */
-
-
-$(document).foundation();
 
 $(function(){ $(document).foundation(); });
