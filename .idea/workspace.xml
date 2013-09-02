@@ -15,7 +15,7 @@
     <file path="/static_pages_controller.rb" changelist="e7b8be9b-4e0b-45b4-a424-e541bc15d024" time="1376318441778" ignored="false" />
     <file path="/factories.rb" changelist="e7b8be9b-4e0b-45b4-a424-e541bc15d024" time="1377176642130" ignored="false" />
     <file path="/Gemfile" changelist="e7b8be9b-4e0b-45b4-a424-e541bc15d024" time="1377253956276" ignored="false" />
-    <file path="/application.html.erb" changelist="e7b8be9b-4e0b-45b4-a424-e541bc15d024" time="1377859698644" ignored="false" />
+    <file path="/application.html.erb" changelist="e7b8be9b-4e0b-45b4-a424-e541bc15d024" time="1378109484541" ignored="false" />
     <file path="/README.markdown" changelist="e7b8be9b-4e0b-45b4-a424-e541bc15d024" time="1376330829645" ignored="false" />
     <file path="/manage_users.feature" changelist="e7b8be9b-4e0b-45b4-a424-e541bc15d024" time="1377800716891" ignored="false" />
     <file path="/users_steps.rb" changelist="e7b8be9b-4e0b-45b4-a424-e541bc15d024" time="1377176776925" ignored="false" />
@@ -115,28 +115,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Gemfile" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="Gemfile" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Gemfile">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="64" column="23" selection-start="1538" selection-end="1538" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="foundation_and_overrides.scss" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/foundation_and_overrides.scss">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="1241" column="31" selection-start="33778" selection-end="33778" vertical-scroll-proportion="0.42060086">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="application.css" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/application.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="25" selection-start="578" selection-end="578" vertical-scroll-proportion="0.0">
+            <state line="64" column="23" selection-start="1538" selection-end="1538" vertical-scroll-proportion="2.0041754">
               <folding />
             </state>
           </provider>
@@ -170,9 +152,9 @@
         <option value="$PROJECT_DIR$/lib/tasks/populate.rake" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/application.css" />
         <option value="$PROJECT_DIR$/Gemfile" />
-        <option value="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/application.js" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/foundation_and_overrides.scss" />
+        <option value="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
       </list>
     </option>
   </component>
@@ -1083,7 +1065,9 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/app/models/user.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="6" selection-start="6" selection-end="6" vertical-scroll-proportion="0.0" />
+        <state line="0" column="6" selection-start="6" selection-end="6" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/products/_form.html.erb">
@@ -1093,7 +1077,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/beverages_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="6" selection-start="6" selection-end="6" vertical-scroll-proportion="0.0" />
+        <state line="0" column="6" selection-start="6" selection-end="6" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/beverages/_form.html.erb">
@@ -1103,7 +1089,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/products_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="41" selection-start="427" selection-end="427" vertical-scroll-proportion="0.5730337" />
+        <state line="17" column="41" selection-start="427" selection-end="427" vertical-scroll-proportion="0.5730337">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/products/index.html.erb">
@@ -1113,7 +1101,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/sessions_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="5" selection-start="97" selection-end="97" vertical-scroll-proportion="0.064449064" />
+        <state line="4" column="5" selection-start="97" selection-end="97" vertical-scroll-proportion="0.064449064">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/helpers/application_helper.rb">
@@ -1126,23 +1116,9 @@
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/tasks/populate.rake">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="134" column="86" selection-start="11865" selection-end="11865" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/product.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="19" column="48" selection-start="646" selection-end="646" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/application.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="25" selection-start="578" selection-end="578" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -1154,23 +1130,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/foundation_and_overrides.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1241" column="31" selection-start="33778" selection-end="33778" vertical-scroll-proportion="0.42060086">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/tasks/populate.rake">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="134" column="86" selection-start="11865" selection-end="11865" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/application.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="25" selection-start="578" selection-end="578" vertical-scroll-proportion="0.59498954">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="0" selection-start="869" selection-end="869" vertical-scroll-proportion="0.6593407">
+        <state line="13" column="80" selection-start="451" selection-end="451" vertical-scroll-proportion="0.42857143">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Gemfile">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="64" column="23" selection-start="1538" selection-end="1538" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/foundation_and_overrides.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1241" column="31" selection-start="33778" selection-end="33778" vertical-scroll-proportion="0.42060086">
+        <state line="64" column="23" selection-start="1538" selection-end="1538" vertical-scroll-proportion="2.0041754">
           <folding />
         </state>
       </provider>
