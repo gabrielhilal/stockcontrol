@@ -1,0 +1,50 @@
+<h1>Specs</h1>
+
+<dl class="sub-nav">
+  <dt>Category:</dt>
+  <% @categories.each do |category| %>
+    <dd class="<%= 'active' if current_page?("#{spec_beverages_path}?category=#{category.id}") %>">
+      <%= link_to category.name, "#{spec_beverages_path}?category=#{category.id}" %>
+    </dd>
+  <% end %>
+</dl>
+
+<div class="row">
+  <div class="large-12 columns">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Ingredients</th>
+          <th>Garnish</th>
+          <th>Glass</th>
+          <th>Ice</th>
+          <th>Method</th>
+        </tr>
+      </thead>
+
+      <tbody>
+           <% @beverages.each do |beverage| %>
+           <tr>
+             <td><%= beverage.name %></td>
+             <td>
+               <table>
+                 <% beverage.recipes.each do |item| %>
+                 <tr>
+                   <td><%= "#{item.quantity} #{item.product.measure}" %></td>
+                   <td><%= item.product.name %></td>
+                 </tr>
+                 <% end %>
+               </table>
+             </td>
+             <td><%= beverage.garnish %></td>
+             <td><%= beverage.glass %></td>
+             <td><%= beverage.ice %></td>
+             <td><%= beverage.method %></td>
+           </tr>
+           <% end %>
+         </tbody>
+       </table>
+  </div>
+</div>
+

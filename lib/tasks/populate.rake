@@ -137,7 +137,7 @@ namespace :db do
     Supplier.create!(name: Faker::Name.name, telephone: Faker::PhoneNumber.phone_number, email: Faker::Internet.email )
     Supplier.create!(name: Faker::Name.name, telephone: Faker::PhoneNumber.phone_number, email: Faker::Internet.email )
     Supplier.create!(name: Faker::Name.name, telephone: Faker::PhoneNumber.phone_number, email: Faker::Internet.email )
-    Supplier.create!(name: 'purchases during the week', telephone: '', email: '' )
+    Supplier.create!(name: 'Week Purchases', telephone: '', email: '' )
 
 
     #create 500 fake purchases

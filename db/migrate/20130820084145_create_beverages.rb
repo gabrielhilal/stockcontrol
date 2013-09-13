@@ -5,6 +5,7 @@ class CreateBeverages < ActiveRecord::Migration
       t.text :description
       t.text :method
       t.string :glass
+      t.string :ice
       t.string :garnish
       t.integer :beverage_category_id
 

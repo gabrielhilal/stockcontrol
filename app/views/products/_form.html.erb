@@ -20,7 +20,7 @@
         <%= f.text_area :description, class: 'fix_row', rows: 5,  placeholder: 'Type the description...'  %>
       </div>
       <div class="large-3 columns">
-        <%= f.label :quantity %>
+        <%= f.label :quantity, 'Quantity (0 if uncountable)' %>
         <%= f.text_field :quantity, placeholder: 'Type the quantity...' %>
       </div>
       <div class="large-3 columns">

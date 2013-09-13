@@ -16,16 +16,12 @@ ActiveRecord::Schema.define(version: 20130828131207) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "beverage_categories", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "beverages", force: true do |t|
     t.string   "name"
     t.text     "description"
     t.text     "method"
     t.string   "glass"
+    t.string   "ice"
     t.string   "garnish"
     t.integer  "beverage_category_id"
     t.datetime "created_at"
@@ -52,11 +48,6 @@ ActiveRecord::Schema.define(version: 20130828131207) do
     t.string   "name"
     t.text     "description"
     t.boolean  "current"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "product_categories", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -132,7 +123,6 @@ ActiveRecord::Schema.define(version: 20130828131207) do
 
   create_table "transfer_stocks", force: true do |t|
     t.date     "date"
-    t.string   "type"
     t.text     "description"
     t.integer  "sender_id"
     t.integer  "recipient_id"

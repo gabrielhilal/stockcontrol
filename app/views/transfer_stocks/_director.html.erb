@@ -21,7 +21,7 @@
           <td><%= transfer.sender.name %></td>
           <td><%= transfer.recipient.name %></td>
           <td><%= !transfer.status ? 'Not Confirmed' : 'Confirmed'%></td>
-          <td class="text-right"><%= transfer.products.count %></td>
+          <td class="text-right"><%= transfer.transfer_lines.count %></td>
           <td class="text-right"><%= number_with_precision(transfer.items, precision: 0) %></td>
           <td class="text-right"><%= link_to 'Edit', edit_transfer_stock_path(transfer), class: 'tiny button secondary round' %></td>
           <td class="text-right"><%= link_to 'Delete', transfer, method: :delete, data: { confirm: "Transfer on #{transfer.date} will be deleted. Are you sure?" }, class: 'tiny button alert round' %></td>

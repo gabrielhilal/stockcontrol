@@ -22,6 +22,7 @@
       <% if current_user.supervisor? %>
         <%= render 'layouts/nav/supervisor' %>
       <% end %>
+      <li><%= link_to 'Specs', spec_beverages_path %></li>
     </ul>
     <% end %>
     <!-- Right Nav Section -->

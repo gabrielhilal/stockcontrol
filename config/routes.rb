@@ -15,7 +15,11 @@ Lostgroup::Application.routes.draw do
     end
   end
   resources :beverage_categories
-  resources :beverages
+  resources :beverages do
+    collection do
+      get 'spec'
+    end
+  end
   resources :menus do
     member do
       get 'set_default'

@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
   def new
     @title = 'teste'
     unless current_user.nil?
-      redirect_to current_user
+      redirect_to root_path
     end
   end
 

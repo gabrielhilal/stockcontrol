@@ -23,11 +23,12 @@ class Venue < ActiveRecord::Base
     sent_stocks.where(status: true).joins(:transfer_lines).where(transfer_lines: { product_id: product.id }).sum('transfer_lines.quantity')
   end
 
-  def received_stock(product)
+  def calc_received_stock(product)
     received_stocks.where(status: true).joins(:transfer_lines).where(transfer_lines: { product_id: product.id }).sum('transfer_lines.quantity')
   end
 
   def calc_stock(product)
-    ((calc_purchases(product) - calc_sent_stock(product) + received_stock(product)) * Product.find(product.id).quantity - calc_sales(product))/Product.find(product.id).quantity
+    calc_purchases(product) + calc_received_stock(product) - calc_sent_stock(product) - calc_sales(product)/Product.find(product.id).quantity
   end
+
 end

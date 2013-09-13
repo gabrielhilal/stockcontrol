@@ -1,12 +1,17 @@
 class BeveragesController < ApplicationController
   before_action :set_beverage, only: [:show, :edit, :update, :destroy]
-  before_action :manager
+  before_action :manager, except: :spec
 
   def index
     @beverages = Beverage.search(params[:search]).order(params[:sort])
   end
 
   def show
+  end
+
+  def spec
+    @categories = BeverageCategory.all
+    @beverages = Beverage.where(beverage_category_id: params[:category])
   end
 
   def new
@@ -50,7 +55,7 @@ class BeveragesController < ApplicationController
     end
 
     def beverage_params
-      params.require(:beverage).permit(:name, :glass, :description, :method, :beverage_category_id, recipes_attributes: [ :id, :product_id, :beverage_id, :quantity, :_destroy ])
+      params.require(:beverage).permit(:name, :glass, :ice, :description, :method, :beverage_category_id, recipes_attributes: [ :id, :product_id, :beverage_id, :quantity, :_destroy ])
     end
 
   def get_name
