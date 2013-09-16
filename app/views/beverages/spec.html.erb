@@ -1,6 +1,6 @@
-<h1>Specs</h1>
+<h1 class="hide-on-print">Specs</h1>
 
-<dl class="sub-nav">
+<dl class="sub-nav hide-on-print">
   <dt>Category:</dt>
   <% @categories.each do |category| %>
     <dd class="<%= 'active' if current_page?("#{spec_beverages_path}?category=#{category.id}") %>">
@@ -8,6 +8,11 @@
     </dd>
   <% end %>
 </dl>
+<div class="row">
+  <div class="large-12 columns text-right">
+    <a class="button round tiny secondary hide-on-print" href="#" onclick="window.print();return false;">Print Spec</a>
+  </div>
+</div>
 
 <div class="row">
   <div class="large-12 columns">
@@ -47,4 +52,6 @@
        </table>
   </div>
 </div>
+
+
 
