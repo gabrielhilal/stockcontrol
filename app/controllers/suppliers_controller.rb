@@ -3,14 +3,17 @@ class SuppliersController < ApplicationController
   before_action :director
 
   def index
+    @title = 'Listing Suppliers'
     @suppliers = Supplier.order(params[:sort])
   end
 
   def new
+    @title = 'New Suppliers'
     @supplier = Supplier.new
   end
 
   def edit
+    @title = "Editing #{get_name}"
   end
 
   def create

@@ -2,7 +2,7 @@ class SessionsController < ApplicationController
   skip_before_action :authorize
 
   def new
-    @title = 'teste'
+    @title = 'Login'
     unless current_user.nil?
       redirect_to root_path
     end

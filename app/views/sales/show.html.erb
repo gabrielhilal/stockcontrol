@@ -2,7 +2,7 @@
 
 <div class="row">
   <div class="large-6 columns">
-    <h5>Sales on <%= @sale.date %></h5>
+    <h5>Sales on <%= @sale.date.strftime('%d/%m/%Y') %></h5>
   </div>
   <div class="large-6 columns">
     <%= simple_format(@sale.summary) %>

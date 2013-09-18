@@ -4,19 +4,28 @@ class UsersController < ApplicationController
   skip_before_action :authorize, only: :show
 
   def index
+    @title = 'Listing Users'
     @users = User.search(params[:search]).where.not(id: current_user.id).order(params[:sort])
   end
 
   def show
     redirect_to login_path unless !current_user.nil?
-    @user = current_user
+    if current_user.director? or current_user.manager?
+      redirect_to transfer_stocks_path
+    elsif current_user.supervisor?
+      redirect_to stock_products_path
+    else
+      redirect_to spec_beverages_path
+    end
   end
 
   def new
+    @title = 'New User'
     @user = User.new
   end
 
   def edit
+    @title = "Editing #{get_name}"
   end
 
   def create

@@ -4,6 +4,7 @@ class PurchasesController < ApplicationController
   before_action :right_user, only: [:show, :edit, :update, :destroy]
 
   def index
+    @title = 'Listing Purchases'
     if current_user.director?
       @purchases = Purchase.search(params[:search]).order(params[:sort])
     else
@@ -12,14 +13,18 @@ class PurchasesController < ApplicationController
   end
 
   def show
+    @title = "Purchase #{get_number}"
   end
 
   def new
-   @purchase = Purchase.new
-   3.times { @purchase.purchase_lines.build }
+    @title = 'New Purchase'
+    @purchase = Purchase.new
+    @purchase.date ||= Date.today
+    3.times { @purchase.purchase_lines.build }
   end
 
   def edit
+    @title = "Editing #{get_number}"
   end
 
   def create

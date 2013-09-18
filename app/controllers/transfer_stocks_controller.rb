@@ -5,6 +5,7 @@ class TransferStocksController < ApplicationController
   before_action :is_confirmed?, only: [:edit, :update, :destroy]
 
   def index
+    @title = 'Listing Transfers of Stock'
     @transfers = TransferStock.order(:date)
     if current_user.director?
       @not_wastage = @transfers.where.not(recipient_id: nil).order(params[:sort_table1])
@@ -16,15 +17,19 @@ class TransferStocksController < ApplicationController
   end
 
   def new
+    @title = 'New Transfer of Stock'
     @transfer = TransferStock.new
     @transfer.date ||= Date.today
+    @transfer.status ||= true if current_user.manager?
     @transfer.transfer_lines.build
   end
 
   def show
+    @title = "Transfer of Stock on #{get_date}"
   end
 
   def edit
+    @title = "Editing Transfer of Stock on #{get_date}"
   end
 
   def create
@@ -70,7 +75,7 @@ class TransferStocksController < ApplicationController
     end
 
     def get_date
-      @transfer.date
+      @transfer.date.strftime('%d/%m/%Y')
     end
 
     def is_confirmed?

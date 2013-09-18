@@ -3,14 +3,17 @@ class ProductCategoriesController < ApplicationController
   before_action :director
 
   def index
+    @title = 'Listing Product Categories'
     @categories = ProductCategory.order(:name)
   end
 
   def new
+    @title = 'New Product Category'
     @category = ProductCategory.new
   end
 
   def edit
+    @title = "Editing #{get_name}"
   end
 
   def create

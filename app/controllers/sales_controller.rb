@@ -4,6 +4,7 @@ class SalesController < ApplicationController
   before_action :right_user, only: [:show, :edit, :update, :destroy]
 
   def index
+    @title = 'Listing Sales'
     if current_user.director?
       @sales = Sale.search(params[:search]).order(params[:sort])
     else
@@ -12,10 +13,13 @@ class SalesController < ApplicationController
   end
 
   def show
+    @title = "Sale on #{get_date}"
   end
 
   def new
+    @title = 'New Sale'
     @sale = Sale.new
+    @sale.date ||= Date.today
     @menu = Menu.where(current: true).first
     @menu.menu_lines.each do |line|
       @sale.sale_lines.build(beverage_id: line.beverage_id, price: line.price)
@@ -23,6 +27,7 @@ class SalesController < ApplicationController
   end
 
   def edit
+    @title = "Editing sale on #{get_date}"
   end
 
   def create
@@ -61,7 +66,7 @@ class SalesController < ApplicationController
     end
 
     def get_date
-      @sale.date
+      @sale.date.strftime('%d/%m/%Y')
     end
 
     def right_user

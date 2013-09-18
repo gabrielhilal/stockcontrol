@@ -3,14 +3,17 @@ class VenuesController < ApplicationController
   before_action :director
 
   def index
+    @title = 'Listing Venues'
     @venues = Venue.order(params[:sort])
   end
 
   def new
+    @title = 'New Venue'
     @venue = Venue.new
   end
 
   def edit
+    @title = "Editing #{get_name}"
   end
 
   def create
@@ -37,6 +40,8 @@ class VenuesController < ApplicationController
       flash[:error] = "Venue #{get_name} cannot be deleted. Delete the related users first"
     elsif @venue.purchases.exists?
       flash[:error] = "Venue #{get_name} cannot be deleted. Delete the related purchases first"
+    elsif @venue.sales.exists?
+      flash[:error] = "Venue #{get_name} cannot be deleted. Delete the related sales first"
     else
       @venue.destroy
       flash[:notice] = "Venue #{get_name} deleted"

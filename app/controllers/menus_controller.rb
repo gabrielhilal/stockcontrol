@@ -3,18 +3,23 @@ class MenusController < ApplicationController
   before_action :director
 
   def index
+    @title = 'Listing Menus'
     @menus = Menu.order(:name)
   end
 
   def new
+    @title = 'New Menu'
     @menu = Menu.new
     3.times { @menu.menu_lines.build }
   end
 
   def show
+    @title = "Menu #{get_name}"
+    @title = 'Listing Menus'
   end
 
   def edit
+    @title = "Editing #{get_name}"
   end
 
   def create

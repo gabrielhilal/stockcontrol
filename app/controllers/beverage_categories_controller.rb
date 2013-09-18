@@ -3,14 +3,17 @@ class BeverageCategoriesController < ApplicationController
   before_action :manager
 
   def index
+    @title = 'Listing Beverage Categories'
     @categories = BeverageCategory.order(:name)
   end
 
   def new
+    @title = 'New Beverage Category'
     @category = BeverageCategory.new
   end
 
   def edit
+    @title = "Editing #{get_name}"
   end
 
   def create

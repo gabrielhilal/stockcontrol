@@ -4,19 +4,23 @@ class ProductsController < ApplicationController
   before_action :supervisor, only: [:stock]
 
   def index
+    @title = 'Listing Products'
     @products = Product.search(params[:search]).order(params[:sort])
   end
 
   def stock
+    @title = 'Products in Stock'
     @products = Product.order(params[:sort])
     @venues = Venue.all
   end
 
   def new
+    @title = 'New Product'
     @product = Product.new
   end
 
   def show
+    @title = "Product #{get_name}"
     redirect_to products_path if @product.quantity == 0
     start_date = Date.today << (params[:period].nil? ? 12 : params[:period].to_f)
     date_range = (start_date..Date.today).select {|d| d.day == 1}
@@ -110,6 +114,7 @@ class ProductsController < ApplicationController
   end
 
   def edit
+    @title = "Edit #{get_name}"
   end
 
   def create
@@ -134,6 +139,10 @@ class ProductsController < ApplicationController
   def destroy
     if @product.purchases.exists?
       flash[:error] = "Product #{get_name} cannot be deleted. Delete the related purchases first"
+    elsif @product.beverages.exists?
+      flash[:error] = "Product #{get_name} cannot be deleted. Delete the related beverages first"
+    elsif @product.transfer_stocks.exists?
+      flash[:error] = "Product #{get_name} cannot be deleted. Delete the related transfers of stock first"
     else
       @product.destroy
       flash[:notice] = "Product #{get_name} deleted"
