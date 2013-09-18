@@ -9,8 +9,9 @@ class UsersController < ApplicationController
   end
 
   def show
-    redirect_to login_path unless !current_user.nil?
-    if current_user.director? or current_user.manager?
+    if current_user.nil?
+      redirect_to login_path
+    elsif current_user.director? or current_user.manager?
       redirect_to transfer_stocks_path
     elsif current_user.supervisor?
       redirect_to stock_products_path
